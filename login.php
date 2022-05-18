@@ -25,9 +25,11 @@
                       placeholder="Username" />
                   </div>
 
-                  <div class="form-outline mb-4">
+                  <div class="form-outline mb-2">
                     <input type="password" id="form2Example22" class="form-control" placeholder="Password" />
-                  </div>
+                </div>
+                
+                <input class="mb-2 mr-2" type="checkbox">Remember me
 
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg mb-3" type="button">Log
@@ -35,22 +37,16 @@
                     <a class="text-muted" href="#!">Forgot password?</a>
                   </div>
 
-                  <div class="d-flex align-items-center justify-content-center pb-4">
-                    <p class="mb-0 mx-2">Don't have an account?</p>
-                    <button type="button" class="btn btn-outline-danger">Create new</button>
+                  <div class="d-flex align-items-center justify-content-center">
+                    <p class="mb-0 mr-2">Don't have an account?</p>
+                    <button type="button" class="btn btn-outline-danger">Create new
+                    </button>
                   </div>
-
                 </form>
 
               </div>
             </div>
             <div class="col-lg-6 d-flex align-items-center">
-              <!-- <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 class="mb-4">We are more than just a company</h4>
-                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-              </div> -->
               <img class="img-fluid" src="img/gambarlogin.png" alt="">
             </div>
           </div>
