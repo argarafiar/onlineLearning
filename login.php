@@ -1,3 +1,44 @@
+<?php
+    require 'functions.php';
+
+    if(isset($_POST["login"])) {
+        
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+
+        // cek username
+        if(mysqli_num_rows($result) === 1) {
+            // cek password
+            $row = mysqli_fetch_assoc($result);
+            // if(password_verify($password, $row["password"])) {
+            if($password === $row["password"]) {
+                // if($row["role"] == "admin") {
+                //     $_POST["role"] = true;
+                // } else {
+                //     $_POST["role"] = false;
+                // }
+                // $_SESSION["login"] = true;
+                // if(isset($_POST["remember"])) {
+                //     setcookie("id", $row["id"], time() + 120);
+                //     setcookie("key", hash('sha256', $row["username"]), time() + 120);
+                // }
+                header("Location: index.php");
+                exit;
+            } else {
+                echo "<script>
+                    alert('Password salah!');
+                </script>";
+            }
+        } else {
+            echo "<script>
+                alert('Username belum terdaftar!');
+            </script>";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,30 +58,29 @@
           <div class="row g-0">
             <div class="col-lg-6">
               <div class="card-body p-md-5 mx-md-4">
-                <form>
+                <form action="" method="post">
                   <p>Please login to your account</p>
 
                   <div class="form-outline mb-4">
-                    <input type="email" id="form2Example11" class="form-control"
+                    <input type="text" name="username" class="form-control"
                       placeholder="Username" />
                   </div>
 
                   <div class="form-outline mb-2">
-                    <input type="password" id="form2Example22" class="form-control" placeholder="Password" />
+                    <input type="password" name="password" class="form-control" placeholder="Password" />
                 </div>
                 
                 <input class="mb-2 mr-2" type="checkbox">Remember me
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg mb-3" type="button">Log
+                    <button class="btn btn-primary btn-block fa-lg mb-3" type="submit" name="login">Log
                       in</button>
                     <a class="text-muted" href="#!">Forgot password?</a>
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="mb-0 mr-2">Don't have an account?</p>
-                    <button type="button" class="btn btn-outline-danger">Create new
-                    </button>
+                    <a href="#" type="button" class="btn btn-outline-danger">Create new</a>
                   </div>
                 </form>
 
