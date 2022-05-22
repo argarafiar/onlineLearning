@@ -1,0 +1,62 @@
+/* =============================================== STYLE INDEX ================================================== */
+.nav-link:hover{
+    background-color: grey;
+}
+
+.display-4 {
+    font-weight: bold;
+}
+
+.card-body-icon{
+    position: absolute;
+    z-index: 0;
+    top: 28px;
+    right: 4px;
+    opacity: 0.4;
+    font-size: 80px;
+}
+
+.bg-instagram{
+    background-color: #E1306C;
+}
+.text-instagram{
+    color: #E1306C;
+}
+.btn-instagram{
+    background-color: #E1306C;
+    color: #fff;
+}
+.btn-instagram:hover{
+    background-color: #fff;
+    color: #E1306C;
+}
+
+.bg-facebook{
+    background-color: #4267B2;
+}
+.text-facebook{
+    color: #4267B2;
+}
+.btn-facebook{
+    background-color: #4267B2;
+    color: #fff;
+}
+.btn-facebook:hover{
+    background-color: #fff;
+    color: #4267B2;
+}
+
+.bg-twitter{
+    background-color: #1DA1F2;
+}
+.text-twitter{
+    color: #1DA1F2;
+}
+.btn-twitter{
+    background-color: #1DA1F2;
+    color: #fff;
+}
+.btn-twitter:hover{
+    background-color: #fff;
+    color: #1DA1F2;
+}
