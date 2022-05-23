@@ -14,10 +14,6 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
         <a class="navbar-brand" href="#">SELAMAT DATANG ADMIN | <b>PENS</b></a>
-            <!-- <form class="form-inline my-2 my-lg-0 ml-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
             <div class="icon ml-auto">
                 <h4>
                     <i class="fa-solid fa-envelope mr-3" data-toggle="tooltip" title="Surat Masuk"></i>
@@ -32,13 +28,13 @@
         <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" href="index.html"><i class="fa-solid fa-gauge mr-2"></i>Dashboard</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="index.html"><i class="fa-solid fa-gauge mr-2"></i>Dashboard</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="profile.html"><i class="fa-solid fa-user mr-2"></i>Profile</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="mahasiswa.html"><i class="fa-solid fa-graduation-cap mr-2"></i>Daftar Mahasiswa</a><hr class="bg-secondary">
+                    <a class="nav-link active text-white" href="mahasiswa.html"><i class="fa-solid fa-graduation-cap mr-2"></i>Daftar Mahasiswa</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="dosen.html"><i class="fa-solid fa-chalkboard-user mr-2"></i>Daftar Dosen</a><hr class="bg-secondary">
@@ -56,68 +52,58 @@
             </ul>
         </div>
         <div class="col-md-10 p-5 pt-2">
-            <h3><i class="fa-solid fa-gauge mr-2"></i> Dashboard</h3><hr>
-            <div class="row text-white">
-                <div class="card bg-success ml-5" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-graduation-cap mr-2"></i>
-                        </div>
-                        <h5 class="card-title">JUMLAH MAHASISWA</h5>
-                        <div class="display-4">1.200</div>
-                        <a href=""><p class="card-text text-white">Lihat Details <i class="fas fa-angle-double-right ml-2"></i></p></a>
-                    </div>
-                </div>
-                <div class="card bg-warning ml-5" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-chalkboard-user mr-2"></i>
-                        </div>
-                        <h5 class="card-title">JUMLAH DOSEN</h5>
-                        <div class="display-4">58</div>
-                        <a href=""><p class="card-text text-white">Lihat Details <i class="fas fa-angle-double-right ml-2"></i></p></a>
-                    </div>
-                </div>
-                <div class="card bg-danger ml-5" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-calendar-days mr-2"></i>
-                        </div>
-                        <h5 class="card-title">JUMLAH MATA KULIAH</h5>
-                        <div class="display-4">7</div>
-                        <a href=""><p class="card-text text-white">Lihat Details <i class="fas fa-angle-double-right ml-2"></i></p></a>
-                    </div>
-                </div>
+            <h3><i class="fa-solid fa-graduation-cap mr-2"></i> Daftar Mahasiswa</h3><hr>
+            <div class="d-flex">
+                <a href="" class="btn btn-primary mb-3"><i class="fa-solid fa-plus mr-2"></i>Tambah Data Mahasiswa</a>
+                <form class="form-inline my-2 my-lg-0 ml-auto pb-3">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
-            <div class="row mt-4">
-                <div class="card ml-5 text-white text-center" style="width: 18rem;">
-                    <div class="card-header bg-instagram display-4 pt-4 pb-4">
-                        <i class="fa-brands fa-instagram"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-instagram">INSTAGRAM</h5>
-                        <a href="#" class="btn btn-instagram">FOLLOW</a>
-                    </div>
-                </div>
-                <div class="card ml-5 text-white text-center" style="width: 18rem;">
-                    <div class="card-header bg-facebook display-4 pt-4 pb-4">
-                        <i class="fa-brands fa-facebook"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-facebook">FACEBOOK</h5>
-                        <a href="#" class="btn btn-facebook">FOLLOW</a>
-                    </div>
-                </div>
-                <div class="card ml-5 text-white text-center" style="width: 18rem;">
-                    <div class="card-header bg-twitter display-4 pt-4 pb-4">
-                        <i class="fa-brands fa-twitter"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-twitter">TWITTER</h5>
-                        <a href="#" class="btn btn-twitter">FOLLOW</a>
-                    </div>
-                </div>
-            </div>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama Mahasiswa</th>
+                        <th scope="col">NRP</th>
+                        <th scope="col">Kelas</th>
+                        <th scope="col">Jurusan</th>
+                        <th colspan="3" scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>3121600010</td>
+                        <td>D4IT A</td>
+                        <td>Teknik Informatika</td>
+                        <td class="text-center"><a href="#" class="btn btn-primary">Detail</a></td>                        
+                        <td class="text-center"><a href="#" class="btn btn-info" data-toggle="tooltip" title="Edit"><i class="fa-solid fa-edit"></i></a></td>
+                        <td class="text-center"><a href="#" class="btn btn-danger" data-toggle="tooltip" title="Hapus"><i class="fa-solid fa-trash"></i></a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>3121600010</td>
+                        <td>D4IT A</td>
+                        <td>Teknik Informatika</td>
+                        <td class="text-center"><a href="#" class="btn btn-primary">Detail</a></td>                        
+                        <td class="text-center"><a href="#" class="btn btn-info"><i class="fa-solid fa-edit"></i></a></td>
+                        <td class="text-center"><a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>3121600010</td>
+                        <td>D4IT A</td>
+                        <td>Teknik Informatika</td>
+                        <td class="text-center"><a href="#" class="btn btn-primary">Detail</a></td>                        
+                        <td class="text-center"><a href="#" class="btn btn-info"><i class="fa-solid fa-edit"></i></a></td>
+                        <td class="text-center"><a href="#" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
