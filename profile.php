@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/styles.css">
-    <title>Dashboard || PENS</title>
+    <title>Profile || PENS</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top">
@@ -31,7 +31,7 @@
         </div>
     </nav>
 
-    <div class="row no-gutters mt-5 fixed-top">
+    <div class="row no-gutters mt-5">
         <div class="col-md-2 bg-dark mt-2 pr-3 pt-4 position-fixed" style="z-index: 0;">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
@@ -59,65 +59,74 @@
             </ul>
         </div>
         <div class="col-md-10 p-5 pt-2" style="left: 220px;">
-            <h3><i class="fa-solid fa-gauge mr-2"></i> Dashboard</h3><hr>
-            <div class="row text-white">
-                <div class="card bg-success ml-5" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-graduation-cap mr-2"></i>
+            <h3><i class="fa-solid fa-user mr-2"></i> Profile</h3><hr>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+        
+                            <div class="card-body">
+                                <div class="card-title mb-4">
+                                    <div class="d-flex justify-content-start">
+                                        <div class="image-container">
+                                            <img src="img_profile/<?= $user["image"] ?>" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                        </div>
+                                        <div class="userData ml-3">
+                                            <h2 class="d-block text-primary" style="font-size: 1.5rem; font-weight: bold"><?= $user["username"] ?></h2>
+                                            <h6 class="d-block"> <?= $user["role"] ?> || EEPIS</h6>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <a href="edit.php?username=<?= $user["username"] ?>" class="btn btn-info"><i class="fa-solid fa-pen mr-2"></i> Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="row">
+                                    <div class="col-12">
+                                        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content ml-1" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                                
+        
+                                                <div class="row">
+                                                    <div class="col-sm-3 col-md-2 col-5">
+                                                        <label style="font-weight:bold;">Full Name</label>
+                                                    </div>
+                                                    <div class="col-md-8 col-6">
+                                                        <?= $user["name"] ?>
+                                                    </div>
+                                                </div>
+                                                <hr />
+        
+                                                <div class="row">
+                                                    <div class="col-sm-3 col-md-2 col-5">
+                                                        <label style="font-weight:bold;">Gender</label>
+                                                    </div>
+                                                    <div class="col-md-8 col-6">
+                                                        <?= $user["gender"] ?>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                
+                                                <div class="row">
+                                                    <div class="col-sm-3 col-md-2 col-5">
+                                                        <label style="font-weight:bold;">Bio</label>
+                                                    </div>
+                                                    <div class="col-md-8 col-6">
+                                                        <?= $user["bio"] ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
                         </div>
-                        <h5 class="card-title">JUMLAH MAHASISWA</h5>
-                        <div class="display-4">1.200</div>
-                        <a href=""><p class="card-text text-white">Lihat Details <i class="fas fa-angle-double-right ml-2"></i></p></a>
-                    </div>
-                </div>
-                <div class="card bg-warning ml-5" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-chalkboard-user mr-2"></i>
-                        </div>
-                        <h5 class="card-title">JUMLAH DOSEN</h5>
-                        <div class="display-4">58</div>
-                        <a href=""><p class="card-text text-white">Lihat Details <i class="fas fa-angle-double-right ml-2"></i></p></a>
-                    </div>
-                </div>
-                <div class="card bg-danger ml-5" style="width: 18rem;">
-                    <div class="card-body">
-                        <div class="card-body-icon">
-                            <i class="fa-solid fa-calendar-days mr-2"></i>
-                        </div>
-                        <h5 class="card-title">JUMLAH MATA KULIAH</h5>
-                        <div class="display-4">7</div>
-                        <a href=""><p class="card-text text-white">Lihat Details <i class="fas fa-angle-double-right ml-2"></i></p></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="card ml-5 text-white text-center" style="width: 18rem;">
-                    <div class="card-header bg-instagram display-4 pt-4 pb-4">
-                        <i class="fa-brands fa-instagram"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-instagram">INSTAGRAM</h5>
-                        <a href="#" class="btn btn-instagram">FOLLOW</a>
-                    </div>
-                </div>
-                <div class="card ml-5 text-white text-center" style="width: 18rem;">
-                    <div class="card-header bg-facebook display-4 pt-4 pb-4">
-                        <i class="fa-brands fa-facebook"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-facebook">FACEBOOK</h5>
-                        <a href="#" class="btn btn-facebook">FOLLOW</a>
-                    </div>
-                </div>
-                <div class="card ml-5 text-white text-center" style="width: 18rem;">
-                    <div class="card-header bg-twitter display-4 pt-4 pb-4">
-                        <i class="fa-brands fa-twitter"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-twitter">TWITTER</h5>
-                        <a href="#" class="btn btn-twitter">FOLLOW</a>
                     </div>
                 </div>
             </div>

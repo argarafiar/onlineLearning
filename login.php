@@ -12,23 +12,15 @@
         if(mysqli_num_rows($result) === 1) {
             // cek password
             $row = mysqli_fetch_assoc($result);
-            // if(password_verify($password, $row["password"])) {
-            if($password === $row["password"]) {
-                // if($row["role"] == "admin") {
-                //     $_POST["role"] = true;
+            if(password_verify($password, $row["password"])) {
+                // if($row["role"] == "admin"){
+                //   header("Location: index.php?role=admin");
+                // } else if($row["role"] == "user"){
+                //   header("Location: index.php?role=user");
                 // } else {
-                //     $_POST["role"] = false;
+                //   header("Location: index.php?role=dosen");
                 // }
-                // $_SESSION["login"] = true;
-                // if(isset($_POST["remember"])) {
-                //     setcookie("id", $row["id"], time() + 120);
-                //     setcookie("key", hash('sha256', $row["username"]), time() + 120);
-                // }
-                if($row["role"] == "admin"){
-                  header("Location: index.php?role=admin");
-                } else {
-                  header("Location: index.php?role=user");
-                }
+                header("Location: index.php?username=$username");
                 exit;
             } else {
                 echo "<script>
@@ -84,7 +76,7 @@
 
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="mb-0 mr-2">Don't have an account?</p>
-                    <a href="#" type="button" class="btn btn-outline-danger">Create new</a>
+                    <a href="daftar.php" type="button" class="btn btn-outline-danger">Create new</a>
                   </div>
                 </form>
 

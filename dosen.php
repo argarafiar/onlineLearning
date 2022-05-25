@@ -1,3 +1,10 @@
+<?php
+    require 'functions.php';
+
+    $users = query("SELECT * FROM users WHERE username = '$_GET[username]'");
+    $user = $users[0];
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,25 +32,25 @@
     </nav>
 
     <div class="row no-gutters mt-5 fixed-top">
-        <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
+        <div class="col-md-2 bg-dark mt-2 pr-3 pt-4 position-fixed" style="z-index: 0;">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="index.php"><i class="fa-solid fa-gauge mr-2"></i>Dashboard</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="index.php?username=<?= $user["username"] ?>"><i class="fa-solid fa-gauge mr-2"></i>Dashboard</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="profile.php"><i class="fa-solid fa-user mr-2"></i>Profile</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="profile.php?username=<?= $user["username"] ?>"><i class="fa-solid fa-user mr-2"></i>Profile</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="mahasiswa.php"><i class="fa-solid fa-graduation-cap mr-2"></i>Daftar Mahasiswa</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="mahasiswa.php?username=<?= $user["username"] ?>"><i class="fa-solid fa-graduation-cap mr-2"></i>Daftar Mahasiswa</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active text-white" href="dosen.php"><i class="fa-solid fa-chalkboard-user mr-2"></i>Daftar Dosen</a><hr class="bg-secondary">
+                    <a class="nav-link active text-white" href="dosen.php?username=<?= $user["username"] ?>"><i class="fa-solid fa-chalkboard-user mr-2"></i>Daftar Dosen</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="jadwal.php"><i class="fa-solid fa-calendar-days mr-2"></i>Jadwal Kuliah</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="jadwal.php?username=<?= $user["username"] ?>"><i class="fa-solid fa-calendar-days mr-2"></i>Jadwal Kuliah</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="nilai.php"><i class="fa-solid fa-square-poll-horizontal mr-2"></i>Nilai Mahasiswa</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="nilai.php?username=<?= $user["username"] ?>"><i class="fa-solid fa-square-poll-horizontal mr-2"></i>Nilai Mahasiswa</a><hr class="bg-secondary">
                 </li>
                 <br><br><br>
                 <li class="nav-item mt-1">
@@ -51,7 +58,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-10 p-5 pt-2">
+        <div class="col-md-10 p-5 pt-2" style="left: 220px;">
             <h3><i class="fa-solid fa-chalkboard-user mr-2"></i> Daftar Dosen</h3><hr>
             <div class="d-flex">
                 <a href="" class="btn btn-primary mb-3"><i class="fa-solid fa-plus mr-2"></i>Tambah Data Dosen</a>
