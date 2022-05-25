@@ -39,6 +39,14 @@
         mysqli_query($conn, "INSERT INTO users (id, name, username, password, role) 
                             VALUES ('', '$name', '$username', '$password', '$role')");
 
+        if($role == "user"){
+            mysqli_query($conn, "INSERT INTO mhs (id, name, username) 
+                                VALUES ('', '$name', '$username')");
+        } else if($role == "dosen"){
+            mysqli_query($conn, "INSERT INTO dosen (id, name, username) 
+                                VALUES ('', '$name', '$username')");
+        }
+
         return mysqli_affected_rows($conn);
     }
 
@@ -66,8 +74,153 @@
                     image = '$image'
                     WHERE id = $id
                     ";
+        
         $result = mysqli_query($conn, $query);
 
+        return mysqli_affected_rows($conn);
+    }
+
+    function daftar_mhs($data){
+        global $conn;
+
+        $name = htmlspecialchars($data["name"]);
+        $username = strtolower(stripslashes($data["username"]));
+        $password = mysqli_real_escape_string($conn, $data["password"]);
+        $passwordtmp = mysqli_real_escape_string($conn, $data["passwordtmp"]);
+        $role = htmlspecialchars($data["role"]);
+        $nrp = htmlspecialchars($data["nrp"]);
+        $kelas = htmlspecialchars($data["kelas"]);
+        $jurusan = htmlspecialchars($data["jurusan"]);
+
+        $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$username'");
+        if( mysqli_fetch_assoc($result) ) {
+            echo "<script>
+                    alert('Username sudah ada!');
+                </script>";
+            return false;
+        }
+
+        if( $password !== $passwordtmp ) {
+            echo "<script>
+                    alert('Password tidak sama!');
+                </script>";
+            return false;
+        }
+
+        $cocok = mysqli_query($conn, "SELECT nrp FROM mhs WHERE nrp = '$nrp'");
+        if( mysqli_fetch_assoc($cocok) ) {
+            echo "<script>
+                    alert('NRP sudah ada!');
+                </script>";
+            return false;
+        }
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        mysqli_query($conn, "INSERT INTO users (id, name, username, password, role) 
+                            VALUES ('', '$name', '$username', '$password', '$role')");
+        mysqli_query($conn, "INSERT INTO mhs 
+                            VALUES ('', '$name', '$username', '$nrp', '$kelas', '$jurusan')");
+
+        return mysqli_affected_rows($conn);
+    }
+
+    function edit_mhs($data){
+        global $conn;
+
+        $id = htmlspecialchars($data["id"]);
+        $name = htmlspecialchars($data["name"]);
+        $nrp = htmlspecialchars($data["nrp"]);
+        $username = strtolower(stripslashes($data["username"]));
+        $kelas = htmlspecialchars($data["kelas"]);
+        $jurusan = htmlspecialchars($data["jurusan"]);
+
+        $query = "UPDATE mhs SET
+                    name = '$name',
+                    kelas = '$kelas',
+                    jurusan = '$jurusan',
+                    nrp = '$nrp'
+                    WHERE id = '$id'
+                    ";
+
+        $query2 = "UPDATE users SET
+                    name = '$name'
+                    WHERE username = '$username'
+                    ";
+
+        mysqli_query($conn, $query);
+        mysqli_query($conn, $query2);
+        return mysqli_affected_rows($conn);
+    }
+
+    function daftar_dsn($data){
+        global $conn;
+
+        $name = htmlspecialchars($data["name"]);
+        $username = strtolower(stripslashes($data["username"]));
+        $password = mysqli_real_escape_string($conn, $data["password"]);
+        $passwordtmp = mysqli_real_escape_string($conn, $data["passwordtmp"]);
+        $role = htmlspecialchars($data["role"]);
+        $nik = htmlspecialchars($data["nik"]);
+        $email = htmlspecialchars($data["email"]);
+        $bidang = htmlspecialchars($data["bidang"]);
+
+        $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$username'");
+        if( mysqli_fetch_assoc($result) ) {
+            echo "<script>
+                    alert('Username sudah ada!');
+                </script>";
+            return false;
+        }
+
+        if( $password !== $passwordtmp ) {
+            echo "<script>
+                    alert('Password tidak sama!');
+                </script>";
+            return false;
+        }
+
+        $cocok = mysqli_query($conn, "SELECT nik FROM dosen WHERE nik = '$nik'");
+        if( mysqli_fetch_assoc($cocok) ) {
+            echo "<script>
+                    alert('NIK sudah ada!');
+                </script>";
+            return false;
+        }
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        mysqli_query($conn, "INSERT INTO users (id, name, username, password, role) 
+                            VALUES ('', '$name', '$username', '$password', '$role')");
+        mysqli_query($conn, "INSERT INTO dosen 
+                            VALUES ('', '$name', '$username', '$nik', '$email', '$bidang')");
+
+        return mysqli_affected_rows($conn);
+    }
+
+    function edit_dsn($data){
+        global $conn;
+
+        $id = htmlspecialchars($data["id"]);
+        $name = htmlspecialchars($data["name"]);
+        $nik = htmlspecialchars($data["nik"]);
+        $username = strtolower(stripslashes($data["username"]));
+        $email = htmlspecialchars($data["email"]);
+        $bidang = htmlspecialchars($data["bidang"]);
+
+        $query = "UPDATE dosen SET
+                    name = '$name',
+                    email = '$email',
+                    bidang = '$bidang',
+                    nik = '$nik'
+                    WHERE id = '$id'
+                    ";
+
+        $query2 = "UPDATE users SET
+                    name = '$name'
+                    WHERE username = '$username'
+                    ";
+
+        mysqli_query($conn, $query);
+        mysqli_query($conn, $query2);
         return mysqli_affected_rows($conn);
     }
 
@@ -111,6 +264,19 @@
         move_uploaded_file($tmp_file, 'img_profile/' . $duplikat);
 
         return $duplikat;
+    }
+
+    function hapus($data) {
+        global $conn;
+
+        $username = htmlspecialchars($data["username"]);
+        mysqli_query($conn, "DELETE FROM users WHERE username = '$username'");
+        if($data["role"] == "user") {
+            mysqli_query($conn, "DELETE FROM mhs WHERE username = '$username'");
+        } else if($data["role"] == "dosen") {
+            mysqli_query($conn, "DELETE FROM dosen WHERE username = '$username'");
+        }
+        return mysqli_affected_rows($conn);
     }
 
 ?>
