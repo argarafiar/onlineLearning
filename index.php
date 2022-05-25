@@ -32,22 +32,22 @@
         <div class="col-md-2 bg-dark mt-2 pr-3 pt-4">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" href="index.html"><i class="fa-solid fa-gauge mr-2"></i>Dashboard</a><hr class="bg-secondary">
+                    <a class="nav-link active text-white" href="index.php"><i class="fa-solid fa-gauge mr-2"></i>Dashboard</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="profile.html"><i class="fa-solid fa-user mr-2"></i>Profile</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="profile.php"><i class="fa-solid fa-user mr-2"></i>Profile</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="mahasiswa.html"><i class="fa-solid fa-graduation-cap mr-2"></i>Daftar Mahasiswa</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="mahasiswa.php"><i class="fa-solid fa-graduation-cap mr-2"></i>Daftar Mahasiswa</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="dosen.html"><i class="fa-solid fa-chalkboard-user mr-2"></i>Daftar Dosen</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="dosen.php"><i class="fa-solid fa-chalkboard-user mr-2"></i>Daftar Dosen</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="jadwal.html"><i class="fa-solid fa-calendar-days mr-2"></i>Jadwal Kuliah</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="jadwal.php"><i class="fa-solid fa-calendar-days mr-2"></i>Jadwal Kuliah</a><hr class="bg-secondary">
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="nilai.html"><i class="fa-solid fa-square-poll-horizontal mr-2"></i>Nilai Mahasiswa</a><hr class="bg-secondary">
+                    <a class="nav-link text-white" href="nilai.php"><i class="fa-solid fa-square-poll-horizontal mr-2"></i>Nilai Mahasiswa</a><hr class="bg-secondary">
                 </li>
                 <br><br><br>
                 <li class="nav-item mt-1">

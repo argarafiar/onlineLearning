@@ -25,9 +25,9 @@
                 //     setcookie("key", hash('sha256', $row["username"]), time() + 120);
                 // }
                 if($row["role"] == "admin"){
-                  header("Location: index.html?role=admin");
+                  header("Location: index.php?role=admin");
                 } else {
-                  header("Location: index.html?role=user");
+                  header("Location: index.php?role=user");
                 }
                 exit;
             } else {
