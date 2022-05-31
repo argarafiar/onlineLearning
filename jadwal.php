@@ -3,6 +3,20 @@
 
     $users = query("SELECT * FROM users WHERE username = '$_GET[username]'");
     $user = $users[0];
+
+    if($user["role"] != "admin"){
+        if($user["role"] == "user"){
+            $mhs = query("SELECT * FROM mhs WHERE username = '$_GET[username]'")[0];
+            $jurusan = $mhs["jurusan"];
+        }else if($user["role"] == "dosen"){
+            $dosen = query("SELECT * FROM dosen WHERE username = '$_GET[username]'")[0];
+            $jurusan = $dosen["bidang"];
+        }
+    
+        $jadwal = query("SELECT * FROM matkul WHERE jurusan = '$jurusan'");
+    } else {
+        $jadwal = query("SELECT * FROM matkul");
+    }
 ?>
 
 <!doctype html>
@@ -31,7 +45,7 @@
         </div>
     </nav>
 
-    <div class="row no-gutters mt-5 fixed-top">
+    <div class="row no-gutters mt-5">
         <div class="col-md-2 bg-dark mt-2 pr-3 pt-4 position-fixed" style="z-index: 0;">
             <ul class="nav flex-column ml-3">
                 <li class="nav-item">
@@ -54,53 +68,33 @@
                 </li>
                 <br><br><br>
                 <li class="nav-item mt-1">
-                <a class="nav-link text-white" href="#"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a><hr class="bg-secondary">
+                <a class="nav-link text-white" href="login.php"><i class="fa-solid fa-right-from-bracket mr-2"></i>Logout</a><hr class="bg-secondary">
                 </li>
             </ul>
         </div>
         <div class="col-md-10 p-5 pt-2" style="left: 220px;">
             <h3><i class="fa-solid fa-calendar-days mr-2"></i> Jadwal Kuliah</h3><hr>
             <div class="row">
-                <div class="card ml-5 mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Algoritma dan Struktur Data</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex">
-                            <a href="#" class="card-link">Masuk Kelas <i class="fas fa-angle-double-right ml-2"></i></a>
-                            <a href="#" class="btn btn-info ml-auto" data-toggle="tooltip" title="Edit"><i class="fa-solid fa-edit"></i></a>
+                <?php foreach($jadwal as $jdw) : ?>
+                    <div class="card ml-5 mb-3" style="width: 18rem;;">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $jdw["name"]; ?></h5>
+                            <p class="card-text"><?= $jdw["bio"]; ?></p>
+                            <p class="font-weight-bold" style><?= $jdw["jurusan"]; ?></p> 
+                            <div class="d-flex">
+                                <a href="kelas.php?username=<?= $user["username"] ?>&jurusan=<?= $jdw["jurusan"] ?>" class="card-link">Masuk Kelas <i class="fas fa-angle-double-right ml-2"></i></a>
+                                <?php if($user["role"] == "admin") : ?>
+                                    <a href="#" class="btn btn-info ml-auto" data-toggle="tooltip" title="Edit"><i class="fa-solid fa-edit"></i></a>
+                                <?php endif; ?>
+                                </div>
                         </div>
                     </div>
-                </div>
-                <div class="card ml-5 mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Algoritma dan Struktur Data</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex">
-                            <a href="#" class="card-link">Masuk Kelas <i class="fas fa-angle-double-right ml-2"></i></a>
-                            <a href="#" class="btn btn-info ml-auto" data-toggle="tooltip" title="Edit"><i class="fa-solid fa-edit"></i></a>
-                        </div>
+                <?php endforeach; ?>
+                <?php if($user["role"] == "admin") : ?>
+                    <div class="card ml-5 mb-3" style="width: 18rem; height: 14rem; font-size: 3rem;">
+                        <a href="tambah_jadwal.php" class="m-auto"><i class="fa-regular fa-calendar-plus" data-toggle="tooltip" title="Tambah Jadwal"></i></a>
                     </div>
-                </div>
-                <div class="card ml-5 mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Algoritma dan Struktur Data</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex">
-                            <a href="#" class="card-link">Masuk Kelas <i class="fas fa-angle-double-right ml-2"></i></a>
-                            <a href="#" class="btn btn-info ml-auto" data-toggle="tooltip" title="Edit"><i class="fa-solid fa-edit"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card ml-5 mb-3" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Algoritma dan Struktur Data</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <div class="d-flex">
-                            <a href="#" class="card-link">Masuk Kelas <i class="fas fa-angle-double-right ml-2"></i></a>
-                            <a href="#" class="btn btn-info ml-auto" data-toggle="tooltip" title="Edit"><i class="fa-solid fa-edit"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

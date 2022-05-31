@@ -266,6 +266,53 @@
         return $duplikat;
     }
 
+    function upload_tugas($data){
+        global $conn;
+
+        $name = $_FILES['file']['name'];
+        $ukuran = $_FILES['file']['size'];
+        $error = $_FILES['file']['error'];
+        $tmp_file = $_FILES['file']['tmp_name'];
+        $tanggal = date('Y-m-d');
+        $nrp = htmlspecialchars($data["nrp"]);
+        $jurusan = htmlspecialchars($data["jurusan"]);
+
+
+        //cek apakah tidak ada file yang diupload
+        if($error === 4) {
+            echo "<script>
+                    alert('Pilih file terlebih dahulu!');
+                </script>";
+            return false;
+        }
+
+        //cek apakah yang diupload adalah file
+        $ekstensi = ['pdf', 'doc', 'docx'];
+        $ekstensi_file = explode('.', $name);
+        $ekstensi_file = strtolower(end($ekstensi_file));
+        if( !in_array($ekstensi_file, $ekstensi) ) {
+            echo "<script>
+                    alert('Yang anda pilih bukan file!');
+                </script>";
+            return false;
+        }
+
+        //cek jika ukuran file terlalu besar
+        if( $ukuran > 1000000 ) {
+            echo "<script>
+                    alert('Ukuran file terlalu besar!');
+                </script>";
+            return false;
+        }
+
+        move_uploaded_file($tmp_file, 'files/' . $name);
+
+        $query = "INSERT INTO files (id, name, nrp, tanggal, jurusan) 
+                    VALUES ('', '$name', '$nrp', '$tanggal', '$jurusan')";
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    }
+
     function hapus($data) {
         global $conn;
 
@@ -279,4 +326,46 @@
         return mysqli_affected_rows($conn);
     }
 
+    function daftar_jadwal($data){
+        global $conn;
+
+        $name = htmlspecialchars($data["name"]);
+        $bio = htmlspecialchars($data["bio"]);
+        $jurusan = htmlspecialchars($data["jurusan"]);
+
+        $query = "INSERT INTO matkul VALUES ('', '$name', '$bio', '$jurusan')";
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    }
+
+    function tambah_tugas($data){
+        global $conn;
+
+        $judul = htmlspecialchars($data["judul"]);
+        $sub = htmlspecialchars($data["sub"]);
+        $keterangan = htmlspecialchars($data["keterangan"]);
+        $tanggal = htmlspecialchars($data["tanggal"]);
+        $waktu = htmlspecialchars($data["waktu"]);
+        $jurusan = htmlspecialchars($data["jurusan"]);
+
+        $query = "INSERT INTO tugas
+                    VALUES ('', '$judul', '$sub', '$keterangan', '$tanggal', '$waktu', '$jurusan')";
+
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    }
+
+    function nilai($data){
+        global $conn;
+
+        $nrp = htmlspecialchars($data["nrp"]);
+        $nilai = htmlspecialchars($data["nilai"]);
+
+        $query = "UPDATE files SET
+                    nilai = '$nilai'
+                    WHERE nrp = '$nrp'
+                    ";
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
+    }
 ?>
